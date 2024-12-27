@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .uuid-display {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+        .thank-you-message {
+            font-size: 20px;
+            margin-top: 30px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thank You for Your Submission!</h1>
+        <p class="thank-you-message">Your form has been successfully submitted. Below is your unique identifier (UUID):</p>
+        <div class="uuid-display" id="uuid-display"></div>
+    </div>
+
+    <script>
+        // Get the UUID from the URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const uuid = urlParams.get('UUID');
+
+        if (uuid) {
+            // Display the UUID in the UUID display section
+            document.getElementById('uuid-display').textContent = uuid;
+        } else {
+            document.getElementById('uuid-display').textContent = "UUID not found. Please try again.";
+        }
+    </script>
+</body>
+</html>
