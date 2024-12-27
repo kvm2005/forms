@@ -3,11 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>v1.3Forms</title>
+  <title>1.1Forms</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    // Generate a UUID token and append it to the form URL
+    function generateTokenAndEmbedForm() {
+      // Generate a UUID
+      const uuid = crypto.randomUUID();
+      
+      // Form URL with token appended as a query parameter
+      const formURL = `https://tally.so/r/waZMX2?UUID=${uuid}&transparentBackground=1`;
+
+      // Set the iframe's src to the updated URL
+      const iframe = document.getElementById("form-iframe");
+      iframe.src = formURL;
+    }
+  </script>
   <style>
     body {
       margin: 0;
-      font-family: 'Merriweather', sans-serif;
+      font-family: 'Merriweather', serif;
+      font-size: 130%; /* Increased font size by 30% */
     }
 
     /* Header styling */
@@ -30,7 +47,7 @@
       display: flex;
       align-items: center;
       font-size: 1.5rem;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     .header-title span {
@@ -39,39 +56,61 @@
 
     .nav-links {
       display: flex;
-      gap: 15px;
+      align-items: center;
     }
 
     .nav-links a {
       text-decoration: none;
-      color: #000;
-      font-weight: 500;
+      color: grey; /* Default color for buttons */
+      font-weight: 500; /* Slightly thicker */
+      padding: 0 10px;
+    }
+
+    .nav-links a.form-link {
+      color: black; /* Black text for the form button */
+      font-weight: 600; /* Slightly bolder to stand out */
     }
 
     .nav-links a:hover {
       color: #007BFF;
     }
+
+    .nav-links .divider {
+      color: #000;
+      font-weight: 500;
+      padding: 0 5px;
+    }
+
+    /* Full-page embed styling */
+    iframe {
+      position: absolute;
+      top: 80px; /* Adjusted for header height */
+      left: 0;
+      width: 100%;
+      height: calc(100% - 80px); /* Full height minus header */
+      border: none;
+    }
   </style>
 </head>
-<body>
+<body onload="generateTokenAndEmbedForm()">
   <!-- Header -->
   <header class="header">
     <div class="header-title">
-      <img src="LOGO.png" alt="Logo">
+      <img src="path-to-logo.png" alt="Logo">
       <span>अक्षरज्ञान मंच</span>
     </div>
     <nav class="nav-links">
-      <a href="/">Home</a>
-      <a href="/forms">form</a>
-      <a href="/submission-thank-you">Submission Thank You</a>
-      <a href="/admit-card">admit card</a>
+      <a href="/" class="home-link">Home</a>
+      <span class="divider">·</span>
+      <a href="/forms" class="form-link">form</a>
+      <span class="divider">·</span>
+      <a href="/submission-thank-you" class="thankyou-link">Submission Thank You</a>
+      <span class="divider">·</span>
+      <a href="/admit-card" class="admit-link">admit card</a>
     </nav>
   </header>
 
-  <!-- Content -->
-  <main>
-    <h1>Welcome to the Forms Page</h1>
-    <p>Content goes here...</p>
-  </main>
+  <!-- Embedded Tally Form -->
+  <iframe id="form-iframe" title="Tally Form"></iframe>
 </body>
 </html>
